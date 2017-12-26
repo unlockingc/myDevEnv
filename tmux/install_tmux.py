@@ -39,7 +39,6 @@ if __name__ == "__main__":
     temp = getResult("tmux -V")
     version = temp.split()[1]
     print( "current tmux version:" + version )
-    upgradeTmux()
     if version.lower() != "master":
         if float( version ) < 2.2:
             upgradeTmux()
