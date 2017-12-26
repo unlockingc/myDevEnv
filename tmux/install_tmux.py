@@ -10,8 +10,8 @@ from pyCommon.commonOps import *
 
 def InstallTmux():
     installSoftWare("xclip")
-    runCommand("[ -d ~/.tmux/plugins1 ] && rm -rf ~/.tmux/plugins1 || true")
-    command = "git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins1"
+    runCommand("[ -d ~/.tmux/plugins/tpm ] && rm -rf ~/.tmux/plugins/tpm || true")
+    command = "git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm"
     runCommand(command)
 
 def InstallTpm():
