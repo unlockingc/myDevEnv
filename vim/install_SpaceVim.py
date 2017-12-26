@@ -40,19 +40,23 @@ def installYCM():
 
 
 def copyMyConf():
-    runCommand("[ -f ~/.SpaceVim.d/init.vim ] && mv ~/.SpaceVim.d/init.vim ~/.SpaceVim.d/init.vim.backup || true")
+    runCommand("[ -f ~/.SpaceVim.d/init.vim ] && mv ~/.SpaceVim.d/init.vim ~/.SpaceVim.d/init.vim.backup.myDevEnv || true")
     runCommand("cp ./init.vim ~/.SpaceVim.d/init.vim")
     
-    runCommand("[ -f ~/.vim/autoload/SpaceVim/layers/lang/go.vim ] && mv ~/.vim/autoload/SpaceVim/layers/lang/go.vim ~/.vim/autoload/SpaceVim/layers/lang/go.vim.backup || true")
+    runCommand("[ -f ~/.vim/autoload/SpaceVim/layers/lang/go.vim ] && mv ~/.vim/autoload/SpaceVim/layers/lang/go.vim ~/.vim/autoload/SpaceVim/layers/lang/go.vim.backup.myDevEnv || true")
     runCommand("cp ./go.vim ~/.vim/autoload/SpaceVim/layers/lang/go.vim")
     
 
-if __name__ == "__main__":
+def installVimAll():
+    os.chdir("vim")
     upgradeVim()
     installNeoVim()
     installSpaceVim()
     copyMyConf()
     installYCM()
-    
+    os.chdir("../")
+
+def installVimAllTest():
+    print("installVim")
     
     

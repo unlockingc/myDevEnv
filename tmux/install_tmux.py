@@ -18,7 +18,7 @@ def InstallTpm():
     installSoftWare("tmux")
 
 def copyConf():
-    runCommand("[ -f ~/.tmux.conf ] && mv ~/.tmux.conf ~/.tmux.conf.backup || true")
+    runCommand("[ -f ~/.tmux.conf ] && mv ~/.tmux.conf ~/.tmux.conf.backup.myDevEnv || true")
     runCommand("cp .tmux.conf ~/.tmux.conf")
     
 
@@ -32,7 +32,8 @@ def upgradeTmux():
 
     installFromSource("tmux",gitUrl,aptRequire,buildFunction)
 
-if __name__ == "__main__":
+def installTmuxAll():
+    os.chdir("tmux")
     InstallTmux()
     InstallTpm()
     copyConf()
@@ -43,6 +44,7 @@ if __name__ == "__main__":
         if float( version ) < 2.2:
             runCommand("sudo apt-get remove tmux -y")
             upgradeTmux()
-        
+    os.chdir("../")
 
-    
+def installTmuxAllTest():
+    print("installTmux")
