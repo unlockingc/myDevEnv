@@ -41,6 +41,7 @@ if __name__ == "__main__":
     print( "current tmux version:" + version )
     if version.lower() != "master":
         if float( version ) < 2.2:
+            runCommand("sudo apt-get remove tmux")
             upgradeTmux()
         
 
