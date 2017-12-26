@@ -18,7 +18,7 @@ def InstallTpm():
     installSoftWare("tmux")
 
 def copyConf():
-    runCommand("[ -f ~/.tmux.conf ] && mv ~/.tmux.conf ~/.tmux.conf.backup")
+    runCommand("[ -f ~/.tmux.conf ] && mv ~/.tmux.conf ~/.tmux.conf.backup || true")
     runCommand("cp .tmux.conf ~/.tmux.conf")
     
 
@@ -41,7 +41,7 @@ if __name__ == "__main__":
     print( "current tmux version:" + version )
     if version.lower() != "master":
         if float( version ) < 2.2:
-            runCommand("sudo apt-get remove tmux")
+            runCommand("sudo apt-get remove tmux -y")
             upgradeTmux()
         
 

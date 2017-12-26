@@ -31,7 +31,6 @@ def installSoftWare(softwareName):
     :returns: success: True or False
 
     """
-    print("in installSoftWare")
     command = "install -y " + softwareName
     if distName.lower()=="ubuntu":
         command = "sudo apt-get " + command
