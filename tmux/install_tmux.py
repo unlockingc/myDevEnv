@@ -24,7 +24,7 @@ def copyConf():
 
 def updateConfTmux():
     os.chdir("tmux")
-    runCommand("[ -f ~/.tmux.conf ] && mv -i ~/.tmux.conf ~/.tmux.conf.backup.myDevEnv || true")
+    runCommand("[ -f ~/.tmux.conf ] && mv -f ~/.tmux.conf ~/.tmux.conf.backup.myDevEnv || true")
     runCommand("cp .tmux.conf ~/.tmux.conf")
     os.chdir("../")    
 

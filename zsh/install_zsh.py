@@ -26,7 +26,7 @@ def copyMyConf():
 
 def updateConfZsh():
     os.chdir("zsh")
-    runCommand("[ -f ~/.zshrc ] && mv -i ~/.zshrc ~/.zshrc.backup.myDevEnv || true")
+    runCommand("[ -f ~/.zshrc ] && mv -f ~/.zshrc ~/.zshrc.backup.myDevEnv || true")
     runCommand("cp .zshrc ~/.zshrc")
     os.chdir("../")
 

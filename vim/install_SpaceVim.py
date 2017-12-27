@@ -49,10 +49,10 @@ def copyMyConf():
 
 def updateConfVim():
     os.chdir("vim")
-    runCommand("[ -f ~/.SpaceVim.d/init.vim ] && mv -i ~/.SpaceVim.d/init.vim ~/.SpaceVim.d/init.vim.backup.myDevEnv || true")
+    runCommand("[ -f ~/.SpaceVim.d/init.vim ] && mv -f ~/.SpaceVim.d/init.vim ~/.SpaceVim.d/init.vim.backup.myDevEnv || true")
     runCommand("cp ./init.vim ~/.SpaceVim.d/init.vim")
     
-    runCommand("[ -f ~/.vim/autoload/SpaceVim/layers/lang/go.vim ] && mv -i ~/.vim/autoload/SpaceVim/layers/lang/go.vim ~/.vim/autoload/SpaceVim/layers/lang/go.vim.backup.myDevEnv || true")
+    runCommand("[ -f ~/.vim/autoload/SpaceVim/layers/lang/go.vim ] && mv -f ~/.vim/autoload/SpaceVim/layers/lang/go.vim ~/.vim/autoload/SpaceVim/layers/lang/go.vim.backup.myDevEnv || true")
     runCommand("cp ./go.vim ~/.vim/autoload/SpaceVim/layers/lang/go.vim")
     os.chdir("../")
 
