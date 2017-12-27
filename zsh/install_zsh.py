@@ -22,7 +22,19 @@ def installPlugins():
 def copyMyConf():
     runCommand("[ -f ~/.zshrc ] && mv ~/.zshrc ~/.zshrc.backup.myDevEnv || true")
     runCommand("cp .zshrc ~/.zshrc")
-    
+
+
+def updateConfZsh():
+    os.chdir("zsh")
+    runCommand("[ -f ~/.zshrc ] && mv -i ~/.zshrc ~/.zshrc.backup.myDevEnv || true")
+    runCommand("cp .zshrc ~/.zshrc")
+    os.chdir("../")
+
+def collectZsh():
+    os.chdir("zsh")
+    runCommand("[ -f .zshrc ] && rm .zshrc || true")
+    runCommand("[ -f ~/.zshrc ] && cp ~/.zshrc .zshrc")
+    os.chdir("../")
     
 def installZshAll():
     os.chdir("zsh")

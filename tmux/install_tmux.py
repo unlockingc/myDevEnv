@@ -22,6 +22,12 @@ def copyConf():
     runCommand("cp .tmux.conf ~/.tmux.conf")
     
 
+def updateConfTmux():
+    os.chdir("tmux")
+    runCommand("[ -f ~/.tmux.conf ] && mv -i ~/.tmux.conf ~/.tmux.conf.backup.myDevEnv || true")
+    runCommand("cp .tmux.conf ~/.tmux.conf")
+    os.chdir("../")    
+
 def upgradeTmux():
     aptRequire= ["automake","pkg-config","m4","libtool","libevent-dev","ncurses-dev"]
     gitUrl = "https://github.com/tmux/tmux.git"
@@ -31,6 +37,12 @@ def upgradeTmux():
         runCommand("sudo make install")
 
     installFromSource("tmux",gitUrl,aptRequire,buildFunction)
+
+def collectTmux():
+    os.chdir("tmux")
+    runCommand("[ -f .tmux.conf ] && rm .tmux.conf || true")
+    runCommand("[ -f ~/.tmux.conf ] && cp ~/.tmux.conf .tmux.conf")
+    os.chdir("../")
 
 def installTmuxAll():
     os.chdir("tmux")
@@ -47,4 +59,4 @@ def installTmuxAll():
     os.chdir("../")
 
 def installTmuxAllTest():
-    print("installTmux")
+    print("installTmuxAllmux")

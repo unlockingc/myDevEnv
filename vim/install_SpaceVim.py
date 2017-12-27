@@ -45,7 +45,24 @@ def copyMyConf():
     
     runCommand("[ -f ~/.vim/autoload/SpaceVim/layers/lang/go.vim ] && mv ~/.vim/autoload/SpaceVim/layers/lang/go.vim ~/.vim/autoload/SpaceVim/layers/lang/go.vim.backup.myDevEnv || true")
     runCommand("cp ./go.vim ~/.vim/autoload/SpaceVim/layers/lang/go.vim")
+
+
+def updateConfVim():
+    os.chdir("vim")
+    runCommand("[ -f ~/.SpaceVim.d/init.vim ] && mv -i ~/.SpaceVim.d/init.vim ~/.SpaceVim.d/init.vim.backup.myDevEnv || true")
+    runCommand("cp ./init.vim ~/.SpaceVim.d/init.vim")
     
+    runCommand("[ -f ~/.vim/autoload/SpaceVim/layers/lang/go.vim ] && mv -i ~/.vim/autoload/SpaceVim/layers/lang/go.vim ~/.vim/autoload/SpaceVim/layers/lang/go.vim.backup.myDevEnv || true")
+    runCommand("cp ./go.vim ~/.vim/autoload/SpaceVim/layers/lang/go.vim")
+    os.chdir("../")
+
+def collectVim():
+    os.chdir("vim")
+    runCommand("[ -f init.vim ] && rm init.vim || true")
+    runCommand("[ -f ~/.SpaceVim.d/init.vim ] && cp ~/.SpaceVim.d/init.vim init.vim")
+    runCommand("[ -f go.vim ] && rm go.vim || true")
+    runCommand("[ -f ~/.vim/autoload/SpaceVim/layers/lang/go.vim ] && cp ~/.vim/autoload/SpaceVim/layers/lang/go.vim go.vim")
+    os.chdir("../")
 
 def installVimAll():
     os.chdir("vim")

@@ -60,7 +60,7 @@ def installFromSource(name,git,aptRequire, buildCommands):
     runCommand("[ -d "+tempDir +" ] && rm " + tempDir + " -rf || true")
 
     
-
+backupNumber = 2
 dist = platform.dist()
 distName = dist[0]
 print("get distibution information as:" + str(dist) + "\n==================")
