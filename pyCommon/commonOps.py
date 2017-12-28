@@ -39,6 +39,8 @@ def installSoftWare(softwareName):
     elif distName.lower()=="macos":
         #command = "sudo brew install " + command
         print("Error, Mac Os has not been covered!!!")
+    else:
+        print("Error, OS not supported: " + distName)
     retCode = subprocess.call(command.split())
     if retCode==0:
         return True

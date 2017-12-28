@@ -54,7 +54,7 @@ def installTmuxAll():
     print( "current tmux version:" + version )
     if version.lower() != "master":
         if float( version ) < 2.2:
-            runCommand("sudo apt-get remove tmux -y")
+            runCommand("sudo apt-get remove tmux -y --force-yes")
             upgradeTmux()
     os.chdir("../")
 

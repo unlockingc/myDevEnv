@@ -9,10 +9,20 @@ from pyCommon.commonOps import *
 
 
 def upgradeVim():
-    runCommand("sudo apt-get remove -y vim")
-    aptRequire= ["cmake build-essential python3-dev python3 python3-pip ncurses-dev"]
+    runCommand("sudo apt-get remove -y --force-yes vim")
+    aptRequire= ["cmake build-essential python3-dev python3 python3-pip ncurses-dev python python-dev cscope"]
     submoduleName = "VimSource"
     def buildFunction():
+        runCommand("make distclean")
+        runCommand("./configure --with-features=huge \
+                               --enable-multibyte \
+                               --enable-rubyinterp=yes \
+                               --enable-pythoninterp=yes \
+                               --enable-python3interp=yes \
+                               --enable-perlinterp=yes \
+                               --enable-luainterp=yes \
+                               --enable-gui=gtk2 \
+                               --enable-cscope ")
         runCommand("make")
         runCommand("sudo make install")
 
@@ -64,10 +74,21 @@ def collectVim():
     runCommand("[ -f ~/.vim/autoload/SpaceVim/layers/lang/go.vim ] && cp ~/.vim/autoload/SpaceVim/layers/lang/go.vim go.vim")
     os.chdir("../")
 
+def installVim():
+    installSoftWare("vim")
+    vimVersion = getResult("vim --version | grep \"VIM - Vi IMprove\" | awk '{print $5}'")
+
+    if float(vimVersion) < 8.0 :
+        print("vim version: " + vimVersion + " ++++ need upgrade!")
+        upgradeVim()
+    else:
+        print("vim version: " + vimVersion + " ===do not need upgrade!")
+
+
 def installVimAll():
     os.chdir("vim")
-    upgradeVim()
-    installNeoVim()
+    installVim()
+    #installNeoVim()
     installSpaceVim()
     copyMyConf()
     installYCM()
