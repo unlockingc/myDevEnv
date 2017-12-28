@@ -36,7 +36,7 @@ def upgradeTmux():
         runCommand("./configure && make")
         runCommand("sudo make install")
 
-    installFromSource("tmux",submoduleName,aptRequire,buildFunction)
+    installFromSubmodule("tmux",submoduleName,aptRequire,buildFunction)
 
 def collectTmux():
     os.chdir("tmux")
