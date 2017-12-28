@@ -60,3 +60,7 @@ def installTmuxAll():
 
 def installTmuxAllTest():
     print("installTmuxAllmux")
+
+if __name__ == "__main__":
+   os.chdir("../")
+   installTmuxAll()

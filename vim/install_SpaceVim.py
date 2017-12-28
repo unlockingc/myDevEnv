@@ -77,3 +77,6 @@ def installVimAllTest():
     print("installVim")
     
     
+if __name__ == "__main__":
+   os.chdir("../")
+   installVimAll()

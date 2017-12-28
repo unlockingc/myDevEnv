@@ -23,7 +23,7 @@ def copyMyConf():
     runCommand("[ -f ~/.zshrc ] && mv ~/.zshrc ~/.zshrc.backup.myDevEnv || true")
     runCommand("cp .zshrc ~/.zshrc")
     homePath = os.path.expanduser("~")
-    newHomepath = homepath.replace("/","\/" )
+    newHomepath = homePath.replace("/","\/" )
     runCommand("sed -i 's/\/home\/houyx/"+newHomepath+"/g' ~/.zshrc")
 
 def updateConfZsh():
@@ -48,4 +48,7 @@ def installZshAll():
 
 def installZshAllTest():
     print("installZsh")
-    
+
+if __name__ == "__main__":
+   os.chdir("../")
+   installZshAll()
