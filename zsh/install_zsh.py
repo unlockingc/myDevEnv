@@ -22,7 +22,9 @@ def installPlugins():
 def copyMyConf():
     runCommand("[ -f ~/.zshrc ] && mv ~/.zshrc ~/.zshrc.backup.myDevEnv || true")
     runCommand("cp .zshrc ~/.zshrc")
-
+    homePath = os.path.expanduser("~")
+    newHomepath = homepath.replace("/","\/" )
+    runCommand("sed -i 's/\/home\/houyx/"+newHomepath+"/g' ~/.zshrc")
 
 def updateConfZsh():
     os.chdir("zsh")

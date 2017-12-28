@@ -31,7 +31,7 @@ def installSoftWare(softwareName):
     :returns: success: True or False
 
     """
-    command = "install -y " + softwareName
+    command = "install -y --force-yes " + softwareName
     if distName.lower()=="ubuntu":
         command = "sudo apt-get " + command
     elif distName.lower()=="centos" or distName.lower()=="redhat":
