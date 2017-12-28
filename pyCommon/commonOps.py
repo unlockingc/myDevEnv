@@ -46,18 +46,13 @@ def installSoftWare(softwareName):
         print("Failed Due to Command error: " + command)
         exit(1)
 
-def installFromSource(name,git,aptRequire, buildCommands):
+def installFromSubmodule(name,submoduleName,aptRequire, buildCommands):
     for softwareName in aptRequire:
         installSoftWare(softwareName)
-    tempDir = name + ".build"
-    runCommand("[ -d "+tempDir +" ] && rm " + tempDir + " -rf || true")
-    runCommand("mkdir " + tempDir)
-    os.chdir(tempDir)
-    runCommand("git clone " + git + " ./" + name)
-    os.chdir(name)
+    runCommand("git submodule update --init " + submoduleName)
+    os.chdir(submoduleName)
     buildCommands()
-    os.chdir("../../")
-    runCommand("[ -d "+tempDir +" ] && rm " + tempDir + " -rf || true")
+    os.chdir("../")
 
     
 backupNumber = 2

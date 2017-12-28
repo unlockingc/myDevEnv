@@ -11,12 +11,12 @@ from pyCommon.commonOps import *
 def upgradeVim():
     runCommand("sudo apt-get remove -y vim")
     aptRequire= ["cmake build-essential python3-dev python3 python3-pip ncurses-dev"]
-    gitUrl = "https://github.com/vim/vim.git"
+    submoduleName = "VimSource"
     def buildFunction():
         runCommand("make")
         runCommand("sudo make install")
 
-    installFromSource("vim8.0", gitUrl, aptRequire,buildFunction)
+    installFromSubmodule("vim8.0", submoduleName, aptRequire,buildFunction)
 
 
 def installNeoVim():

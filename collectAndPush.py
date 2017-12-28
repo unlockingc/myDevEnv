@@ -27,6 +27,7 @@ def getVersion():
     
 
 def gitAction():
+    runCommand("git submodule update --init")
     runCommand("git add --all")
     runCommand("git commit -m \""+ getVersion()  +"\"")
     runCommand("git push")

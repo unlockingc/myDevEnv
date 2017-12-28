@@ -30,13 +30,13 @@ def updateConfTmux():
 
 def upgradeTmux():
     aptRequire= ["automake","pkg-config","m4","libtool","libevent-dev","ncurses-dev"]
-    gitUrl = "https://github.com/tmux/tmux.git"
+    submoduleName = "TmuxSource"
     def buildFunction():
         runCommand("sh autogen.sh")
         runCommand("./configure && make")
         runCommand("sudo make install")
 
-    installFromSource("tmux",gitUrl,aptRequire,buildFunction)
+    installFromSource("tmux",submoduleName,aptRequire,buildFunction)
 
 def collectTmux():
     os.chdir("tmux")

@@ -1,3 +1,6 @@
 [submodule "tmux/TmuxSource"]
 	path = tmux/TmuxSource
 	url = https://github.com/tmux/tmux.git
+[submodule "vim/VimSource"]
+	path = vim/VimSource
+	url = https://github.com/vim/vim.git
