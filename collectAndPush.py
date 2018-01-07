@@ -36,6 +36,7 @@ def getVersion():
     
 
 def gitAction():
+    print("current working dir: " + getResult("pwd"))
     runCommand("git submodule update")
     runCommand("git add --all")
     runCommand("git commit -m \""+ getVersion()  +"\"")

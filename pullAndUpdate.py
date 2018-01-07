@@ -20,6 +20,7 @@ def parse_args():
     return args
 
 def gitAction():
+    print( "current working dir: " + getResult("pwd") )
     runCommand("git pull")
     
 
