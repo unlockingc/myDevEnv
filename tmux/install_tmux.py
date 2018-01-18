@@ -1,4 +1,4 @@
-#! /usr/bin/python3
+#! /usr/bin/env python
 
 import os
 import subprocess
@@ -9,13 +9,13 @@ sys.path.append("..")
 from pyCommon.commonOps import *
 
 def InstallTmux():
-    installSoftWare("xclip")
+    installSoftware("xclip")
     runCommand("[ -d ~/.tmux/plugins/tpm ] && rm -rf ~/.tmux/plugins/tpm || true")
     command = "git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm"
     runCommand(command)
 
 def InstallTpm():
-    installSoftWare("tmux")
+    installSoftware("tmux")
 
 def copyConf():
     runCommand("[ -f ~/.tmux.conf ] && mv ~/.tmux.conf ~/.tmux.conf.backup.myDevEnv || true")
@@ -36,7 +36,7 @@ def upgradeTmux():
         runCommand("./configure && make")
         runCommand("sudo make install")
 
-    installFromSubmodule("tmux",submoduleName,aptRequire,buildFunction)
+    installFromSubmodule("tmux",submoduleName,aptRequire,buildFunction, "tmux")
 
 def collectTmux():
     os.chdir("tmux")
@@ -54,7 +54,7 @@ def installTmuxAll():
     print( "current tmux version:" + version )
     if version.lower() != "master":
         if float( version ) < 2.2:
-            runCommand("sudo apt-get remove tmux -y --force-yes")
+            uninstallSoftware("tmux")
             upgradeTmux()
     os.chdir("../")
 

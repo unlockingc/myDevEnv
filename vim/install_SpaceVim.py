@@ -1,4 +1,4 @@
-#! /usr/bin/python3
+#! /usr/bin/env python
 
 import os
 import subprocess
@@ -9,40 +9,54 @@ from pyCommon.commonOps import *
 
 
 def upgradeVim():
-    runCommand("sudo apt-get remove -y --force-yes vim")
-    aptRequire= ["cmake build-essential python3-dev python3 python3-pip ncurses-dev python python-dev cscope"]
+    uninstallSoftware("vim")
+    if distName.lower() == "ubuntu":
+        runCommand("sudo apt-get install -y --force-yes libncurses5-dev libgnome2-dev libgnomeui-dev \
+            libgtk2.0-dev libatk1.0-dev libbonoboui2-dev \
+            libcairo2-dev libx11-dev libxpm-dev libxt-dev python-dev \
+            python3-dev ruby-dev lua5.1 liblua5.1-dev libperl-dev git")
+    else:
+        runCommand("sudo yum install -y ruby ruby-devel lua lua-devel luajit \
+            luajit-devel ctags git python python-devel \
+            python3 python3-devel tcl-devel \
+            perl perl-devel perl-ExtUtils-ParseXS \
+            perl-ExtUtils-XSpp perl-ExtUtils-CBuilder \
+            perl-ExtUtils-Embed")
+
+    aptRequire= ["cmake python-dev python env python-pip ncurses-dev cscope"]
     submoduleName = "VimSource"
     def buildFunction():
         runCommand("make distclean")
         runCommand("./configure --with-features=huge \
-                               --enable-multibyte \
-                               --enable-rubyinterp=yes \
-                               --enable-pythoninterp=yes \
-                               --enable-python3interp=yes \
-                               --enable-perlinterp=yes \
-                               --enable-luainterp=yes \
-                               --enable-gui=gtk2 \
-                               --enable-cscope ")
+            --enable-multibyte \
+            --enable-rubyinterp=yes \
+            --enable-pythoninterp=yes \
+            --enable-python3interp=yes \
+            --enable-perlinterp=yes \
+            --enable-luainterp=yes \
+            --enable-gui=gtk2 \
+            --enable-cscope \
+            --prefix=/usr/local")
         runCommand("make")
         runCommand("sudo make install")
 
-    installFromSubmodule("vim8.0", submoduleName, aptRequire,buildFunction)
-
+    installFromSubmodule("vim8.0", submoduleName, aptRequire,buildFunction,"vim")  
 
 def installNeoVim():
-    installSoftWare("neovim")
+    installSoftware("neovim")
 
 def installSpaceVim():
-    installSoftWare("curl")
+    installSoftware("curl")
     runCommand("curl -sLf https://spacevim.org/install.sh | bash")
 
 def installYCM():
-    installSoftWare("ctags python3 python3-dev python3-pip")
+    installSoftware("ctags env python env python-dev python-pip")
     currentDir = getResult("pwd")
     runCommand("[ ! -d ~/.cache/vimfiles/repos/github.com/Valloric/ ] && mkdir ~/.cache/vimfiles/repos/github.com/Valloric || true")
     os.chdir(os.path.expanduser("~/.cache/vimfiles/repos/github.com/Valloric"))
     runCommand("[ ! -d YouCompleteMe ] && git clone https://github.com/Valloric/YouCompleteMe.git || true")
     os.chdir("YouCompleteMe")
+    runCommand("export PYTHON_CONFIGURE_OPTS=\"--enable-shared\"")
     runCommand("git submodule update --init --recursive")
     runCommand("./install.py --clang-completer --go-completer")
     runCommand("cp third_party/ycmd/examples/.ycm_extra_conf.py ~/.vim/")
@@ -50,6 +64,7 @@ def installYCM():
 
 
 def copyMyConf():
+    runCommand("[ ! -d ~/.SpaceVim.d ] && mkdir ~/.SpaceVim.d || true")
     runCommand("[ -f ~/.SpaceVim.d/init.vim ] && mv ~/.SpaceVim.d/init.vim ~/.SpaceVim.d/init.vim.backup.myDevEnv || true")
     runCommand("cp ./init.vim ~/.SpaceVim.d/init.vim")
     
@@ -75,7 +90,7 @@ def collectVim():
     os.chdir("../")
 
 def installVim():
-    installSoftWare("vim")
+    installSoftware("vim")
     vimVersion = getResult("vim --version | grep \"VIM - Vi IMprove\" | awk '{print $5}'")
 
     if float(vimVersion) < 8.0 :

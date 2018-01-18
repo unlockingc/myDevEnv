@@ -1,4 +1,4 @@
-#! /usr/bin/python3
+#! /usr/bin/env python
 
 import os
 import subprocess
@@ -8,10 +8,10 @@ sys.path.append("..")
 from pyCommon.commonOps import *
 
 def installZsh():
-    installSoftWare("zsh")
+    installSoftware("zsh")
 
 def installOhMyZsh():
-    installSoftWare("curl wget")
+    installSoftware("curl wget")
     homePath = os.path.expanduser("~")
     newHomepath = homePath.replace("/","\/" )
     #sed -n 's/\/home\/.*\/\.oh/${HOME}/p' ~/.zshrc
