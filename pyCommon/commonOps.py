@@ -108,6 +108,8 @@ projectDir = projectDir[0:projectDir.find("myDevEnv")+len("myDevEnv")]
 backupNumber = 2
 dist = platform.dist()
 distName = dist[0]
+if distName.lower() == "debian":
+    distName = "ubuntu"
 print("get distibution information as:" + str(dist) + "\n==================")
 
 

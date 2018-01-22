@@ -22,7 +22,7 @@ ubuntuDict = {\
 "libtool" : "libtool",\
 "libevent-dev" : "libevent-dev",\
 "ncurses-dev" : "ncurses-dev",\
-"env" : "env",\
+"env" : "",\
 "ncurses-dev" : "ncurses-dev",\
 "python" : "python",\
 "python-pip" : "python-pip",\

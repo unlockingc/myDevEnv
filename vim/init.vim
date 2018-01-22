@@ -3,7 +3,6 @@ let g:spacevim_enable_guicolors = 0
 
 let g:spacevim_enable_ycm = 1
 let g:spacevim_autocomplete_method = 'Valloric/YouCompleteMe'
-let g:ycm_server_python_interpreter='/usr/bin/python'
 let g:ycm_global_ycm_extra_conf='~/.vim/.ycm_extra_conf.py'
 let g:spacevim_snippet_engine = 'ultisnips'
 

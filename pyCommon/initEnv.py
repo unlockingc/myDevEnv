@@ -59,14 +59,20 @@ def installSoftware(softwareName):
 
 if __name__ == '__main__':    
     dist = platform.dist()
-    distName = dist[0]
+    distName = dist[0] 
+    if distName.lower() == "debian":
+        distName = "ubuntu"
     print("get distibution information as:" + str(dist) + "\n==================")
     if distName.lower() == "ubuntu":
-        installSoftware("build-essential git")
+        runCommand("sudo dpkg-reconfigure dash")
+        installSoftware("git")
+        runCommand("sudo apt-get install build-essential")
+        runCommand("sudo apt-get install -y --force-yes libssl-dev zlib1g-dev libncurses5-dev libncursesw5-dev libreadline-dev libsqlite3-dev\
+        libgdbm-dev libdb5.3-dev libbz2-dev libexpat1-dev liblzma-dev tk-dev")
     else:
         runCommand("sudo yum groupinstall \"Development Tools\"")
         runCommand("sudo yum install epel-release.noarch -y")
-    installSoftware("git openssl-dev bzip2-dev expat-dev gdbm-dev readline-dev sqlite-dev")
+        installSoftware("git openssl-dev bzip2-dev expat-dev gdbm-dev readline-dev sqlite-dev")
     runCommand("[ ! -d ~/.pyenv ] && git clone https://github.com/pyenv/pyenv.git ~/.pyenv || true")
     runCommand("echo \'export PYENV_ROOT=\"$HOME/.pyenv\"\' | sudo tee /etc/profile.d/mypyenv.sh")
     runCommand("echo \'export PYTHON_CONFIGURE_OPTS=\"--enable-shared\"\' | sudo tee -a /etc/profile.d/mypyenv.sh")
