@@ -6,7 +6,7 @@ import sys
 sys.path.append("..")
 
 from pyCommon.commonOps import *
-
+from go.install_go import *
 
 def upgradeVim():
     uninstallSoftware("vim")
@@ -59,6 +59,7 @@ def installYCM():
     runCommand("export PYTHON_CONFIGURE_OPTS=\"--enable-shared\"")
     runCommand("git submodule update --init --recursive")
     runCommand("./install.py --clang-completer --go-completer")
+    print("=====build finished, copy extra config=======")
     runCommand("cp third_party/ycmd/examples/.ycm_extra_conf.py ~/.vim/")
     os.chdir(currentDir)
 
@@ -106,6 +107,10 @@ def installVimAll():
     #installNeoVim()
     installSpaceVim()
     copyMyConf()
+    print("==================As YCM need go support, Now we install go using go/install_go.py==================")
+    os.chdir("../")
+    installGoAll()
+    os.chdir("vim")
     installYCM()
     os.chdir("../")
 

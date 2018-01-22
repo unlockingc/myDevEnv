@@ -1,0 +1,15 @@
+{
+"softwareVersion":{
+    "go":"1.9.2"
+},
+"downloadLink":{
+    "go":{
+      "1.9.2":"https://storage.googleapis.com/golang/go1.9.2.linux-amd64.tar.gz"
+    }
+},
+"downloadFileName":{
+    "go":{
+      "1.9.2":"go1.9.2.linux-amd64.tar.gz"
+    }
+}
+}

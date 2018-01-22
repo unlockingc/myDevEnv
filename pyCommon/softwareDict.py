@@ -1,4 +1,19 @@
 #!/usr/bin/env python
+import json
+import os
+
+
+projectDirTemp = os.getcwd()
+projectDirTemp = projectDirTemp[0:projectDirTemp.find("myDevEnv")+len("myDevEnv")]
+jsonFile = open(projectDirTemp + "/pyCommon/conf.json")
+jsonConfString = jsonFile.read()
+jsonFile.close()
+
+
+jsonConfDict = json.loads(jsonConfString)
+softwareVersion = jsonConfDict["softwareVersion"]
+downloadLink = jsonConfDict["downloadLink"]
+downloadFileName = jsonConfDict["downloadFileName"]
 
 ubuntuDict = {\
 "automake" : "automake",\

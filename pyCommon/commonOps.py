@@ -96,6 +96,12 @@ def installFromSubmodule(name,submoduleName,aptRequire, buildCommands, subFolder
     buildCommands()
     os.chdir("../")
 
+def downloadSoftware(name):
+    testResult = getResult("command -v wget >/dev/null 2>&1 && echo 1 || echo 0")
+    if testResult == "0":
+        installSoftware("wget")
+    runCommand("[ ! -f "+ downloadFileName[name][softwareVersion[name]] +" ] && wget "+ downloadLink[name][softwareVersion[name]] +" || true")
+    
     
 projectDir = getResult("pwd")
 projectDir = projectDir[0:projectDir.find("myDevEnv")+len("myDevEnv")]
