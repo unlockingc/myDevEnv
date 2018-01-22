@@ -11,8 +11,11 @@ def addAlias():
     pwd = getResult("pwd")
     aliasDownload = "alias downloadMyDevEnv=\""+pwd+"/pullAndUpdate.py -p " + pwd + "\""
     aliasUpload = "alias uploadMyDevEnv=\""+pwd+"/collectAndPush.py -p " + pwd + "\""
-    runCommand("sed -i '/^alias downloadMyDevEnv/d' ~/.myzshConf")
-    runCommand("sed -i '/^alias uploadMyDevEnv/d' ~/.myzshConf")
+    runCommand("[ -f ~/.myzshConf ] && sed -i '/^alias downloadMyDevEnv/d' ~/.myzshConf || true")
+    runCommand("[ -f ~/.myzshConf ] && sed -i '/^alias uploadMyDevEnv/d' ~/.myzshConf || true")
+    runCommand("[ -f ~/.bash_aliases ] && sed -i '/^alias downloadMyDevEnv/d' ~/.bash_aliases || true")
+    runCommand("[ -f ~/.bash_aliases ] && sed -i '/^alias uploadMyDevEnv/d' ~/.bash_aliases || true")
+    
     runCommand("echo \""+aliasUpload+"\">> ~/.myzshConf")
     runCommand("echo \""+aliasDownload+"\">> ~/.myzshConf")
     runCommand("echo \""+aliasDownload+"\">> ~/.bash_aliases")
