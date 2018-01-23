@@ -16,7 +16,10 @@ def installOhMyZsh():
     newHomepath = homePath.replace("/","\/" )
     #sed -n 's/\/home\/.*\/\.oh/${HOME}/p' ~/.zshrc
     runCommand("[ -f ~/.zshrc ] && sed -i 's/\/home\/.*\/.oh/"+newHomepath+"\/.oh/g' ~/.zshrc || true")
-    runCommand("sh -c \"$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)\"")
+    runCommand("[ ! -f install.sh ] && wget https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh || true")
+    runCommand("chmod u+x install.sh")
+    runCommand("sed -i \"/env zsh/d\" install.sh")
+    runCommand("./install.sh")
     #runCommand("chsh -s /bin/bash")   
 
 def installPlugins():
