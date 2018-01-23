@@ -1,5 +1,5 @@
 #! /usr/bin/env python
-
+import time
 import os
 import subprocess
 import sys
@@ -55,16 +55,32 @@ def InstallGoTools():
        'keyify':        'github.com/dominikh/go-tools/cmd/keyify',\
        'motion':        'github.com/fatih/motion',\
      }
-
+    successDir = {}
     command = "go get -u "
     for key in tools:
         result = getResult('command -v '+key+' && echo 1 || echo 0')
         if result == '0':
             tempCommand = command + tools[key]
-            print('download: ' + key)
-            runCommand(tempCommand)
+            print('download: ' + key + " \n\t\t" + command )
+            ret = runCommandFaultTolerant(tempCommand)
+            if ret:
+                successDir[key] = 1
+            else:
+                successDir[key] = 0
         else:
             print('already have: ' + key)
+            successDir[key] = 2
+    print("\033[1;37;46mGo get Finished, installed pkg are:  \033[0m")
+    for key in successDir:
+        if successDir[key] == 1:
+            print("\033[30;1m"+ key +"[New]  \033[0m")
+        else:
+            if successDir[key] == 2:
+                print("\033[36;1m"+key+"[Already] \033[0m")
+            else:
+                print("\033[31;1m"+ key +"[Failed]  \033[0m")
+    time.sleep(2)
+
 
 def installGoAll():
     os.chdir("go")

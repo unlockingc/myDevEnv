@@ -34,6 +34,7 @@ def updateConfZsh():
     os.chdir("zsh")
     runCommand("[ -f ~/.zshrc ] && mv -f ~/.zshrc ~/.zshrc.backup.myDevEnv || true")
     runCommand("cp .zshrc ~/.zshrc")
+    runCommand("[ -f ~/.zshrc ] && sed -i 's/\/home\/.*\/.oh/"+newHomepath+"\/.oh/g' ~/.zshrc || true")
     os.chdir("../")
 
 def collectZsh():

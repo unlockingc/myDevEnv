@@ -27,6 +27,20 @@ def getResult(commandString):
     else:
         print("Failed Due to Command error: " + commandString)
 
+def runCommandFaultTolerant(commandString):
+    """TODO: Docstring for runCommand.
+    :returns: success: True or False
+
+    """
+    #retCode = subprocess.call(commandString.split())
+    retCode = os.system(commandString)
+    if retCode==0:
+        return True
+    else:
+        print("\033[33;1m [Warning] Command error: " + commandString + "! \033[0m")
+        return False
+
+
 
 def getSoftwareNameOnDist(softwareName):
     templist = softwareName.split()
