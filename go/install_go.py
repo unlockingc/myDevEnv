@@ -61,7 +61,7 @@ def InstallGoTools():
         result = getResult('command -v '+key+' && echo 1 || echo 0')
         if result == '0':
             tempCommand = command + tools[key]
-            print('download: ' + key + " \n\t\t" + command )
+            print('download: ' + key + " \ncommand: \t\t" + tempCommand )
             ret = runCommandFaultTolerant(tempCommand)
             if ret:
                 successDir[key] = 1
