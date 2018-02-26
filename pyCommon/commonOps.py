@@ -7,13 +7,15 @@ import sys
 sys.path.append("..")
 from pyCommon.softwareDict import *
 
+sourcePrefix = "source /etc/profile && "
+
 def runCommand(commandString):
     """TODO: Docstring for runCommand.
     :returns: success: True or False
 
     """
     #retCode = subprocess.call(commandString.split())
-    retCode = os.system(commandString)
+    retCode = os.system( sourcePrefix + commandString)
     if retCode==0:
         return True
     else:
@@ -21,7 +23,7 @@ def runCommand(commandString):
         exit(1)
 
 def getResult(commandString):
-    status, output = subprocess.getstatusoutput(commandString)
+    status, output = subprocess.getstatusoutput(sourcePrefix + commandString)
     if status==0:
         return output
     else:

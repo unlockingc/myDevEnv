@@ -9,8 +9,8 @@ from pyCommon.commonOps import *
 
 def addAlias():
     pwd = getResult("pwd")
-    aliasDownload = "alias downloadMyDevEnv=\""+pwd+"/pullAndUpdate.py -p " + pwd + "\""
-    aliasUpload = "alias uploadMyDevEnv=\""+pwd+"/collectAndPush.py -p " + pwd + "\""
+    aliasDownload = "alias downloadMyDevEnv=\\\""+pwd+"/pullAndUpdate.py -p " + pwd + "\\\""
+    aliasUpload = "alias uploadMyDevEnv=\\\""+pwd+"/collectAndPush.py -p " + pwd + "\\\""
     runCommand("[ -f ~/.myzshConf ] && sed -i '/^alias downloadMyDevEnv/d' ~/.myzshConf || true")
     runCommand("[ -f ~/.myzshConf ] && sed -i '/^alias uploadMyDevEnv/d' ~/.myzshConf || true")
     runCommand("[ -f ~/.bash_aliases ] && sed -i '/^alias downloadMyDevEnv/d' ~/.bash_aliases || true")

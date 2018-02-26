@@ -3,13 +3,16 @@ import os
 import commands
 import platform
 from softwareDict import *
+
+sourcePrefix = "source /etc/profile && "
+
 def runCommand(commandString):
     """TODO: Docstring for runCommand.
     :returns: success: True or False
 
     """
     #retCode = subprocess.call(commandString.split())
-    retCode = os.system(commandString)
+    retCode = os.system(sourcePrefix + commandString)
     if retCode==0:
         return True
     else:
@@ -17,7 +20,7 @@ def runCommand(commandString):
         exit(1)
 
 def getResult(commandString):
-    status, output = commands.getstatusoutput(commandString)
+    status, output = commands.getstatusoutput(sourcePrefix + commandString)
     if status==0:
         return output
     else:
@@ -79,7 +82,7 @@ if __name__ == '__main__':
     runCommand("echo \'export PATH=\"$PYENV_ROOT/bin:$PATH\"\' | sudo tee -a /etc/profile.d/mypyenv.sh")
     runCommand("echo -e \'if command -v pyenv 1>/dev/null 2>&1; then\\n  eval \"$(pyenv init -)\"\\nfi\'  | sudo tee -a /etc/profile.d/mypyenv.sh")
     runCommand("source /etc/profile")
-    pythonVersions = getResult("pyenv versions")
+    pythonVersions = getResult("source /etc/profile && pyenv versions")
     if pythonVersions.find("3.6.4") == -1:
         runCommand("pyenv install 3.6.4")
     else:
