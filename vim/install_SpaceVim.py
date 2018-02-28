@@ -71,8 +71,8 @@ def copyMyConf():
     
     runCommand("[ -f ~/.vim/autoload/SpaceVim/layers/lang/go.vim ] && mv ~/.vim/autoload/SpaceVim/layers/lang/go.vim ~/.vim/autoload/SpaceVim/layers/lang/go.vim.backup.myDevEnv || true")
     runCommand("cp ./go.vim ~/.vim/autoload/SpaceVim/layers/lang/go.vim")
-    runCommand("[ -f ~/.vim/autoload/SpaceVim/layers/lang/c.vim ] && mv ~/.vim/autoload/SpaceVim/layers/lang/c.vim ~/.vim/autoload/SpaceVim/layers/lang/c.vim.backup.myDevEnv || true")
-    runCommand("cp ./c.vim ~/.vim/autoload/SpaceVim/layers/lang/c.vim")
+    #runCommand("[ -f ~/.vim/autoload/SpaceVim/layers/lang/c.vim ] && mv ~/.vim/autoload/SpaceVim/layers/lang/c.vim ~/.vim/autoload/SpaceVim/layers/lang/c.vim.backup.myDevEnv || true")
+    #runCommand("cp ./c.vim ~/.vim/autoload/SpaceVim/layers/lang/c.vim")
 
 
 def updateConfVim():
