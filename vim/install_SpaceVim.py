@@ -40,7 +40,7 @@ def upgradeVim():
         runCommand("make")
         runCommand("sudo make install")
 
-    installFromSubmodule("vim8.0", submoduleName, aptRequire,buildFunction,"vim")  
+    installFromSubmodule("vim", submoduleName, aptRequire,buildFunction,"vim")  
 
 def installNeoVim():
     installSoftware("neovim")

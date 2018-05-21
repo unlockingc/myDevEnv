@@ -105,7 +105,7 @@ def installFromSubmodule(name,submoduleName,aptRequire, buildCommands, subFolder
     pwd=getResult("pwd")
     
     os.chdir(projectDir)
-    runCommand("git submodule update --init ./" + subFolder + "/" + submoduleName)
+    runCommand("git submodule update --init " + name )
     os.chdir(pwd)
     
     os.chdir(submoduleName)
